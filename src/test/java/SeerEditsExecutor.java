@@ -70,7 +70,7 @@ public class SeerEditsExecutor {
         File csvEditsFile = new File(outputDir, "edit-flags-description.csv");
         CSVWriter csvWriter = new CSVWriter(new FileWriter(csvEditsFile));
         csvWriter.writeNext("Column", "Edit ID", "Category", "Message", "Involved Property Names");
-        int lineLength = ((FixedColumnsLayout)LayoutFactory.getLayout("naaccr-12-incidence")).getLayoutLineLength();
+        int lineLength = ((FixedColumnsLayout)LayoutFactory.getLayout("naaccr-15-incidence")).getLayoutLineLength();
         int idx = 1;
         for (Map.Entry<Rule, Boolean> entry : sortedRules.entrySet()) {
             Rule r = entry.getKey();
@@ -86,11 +86,11 @@ public class SeerEditsExecutor {
         csvWriter.close();
         System.out.println("Created " + csvEditsFile.getName());
 
-        // also copy the NAACCR 12 Incidence layout
-        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("layouts/naaccr-12-layout.xml");
+        // also copy the NAACCR 15 Incidence layout
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("layout/fixed/naaccr/naaccr-15-layout.xml");
         if (is == null)
-            throw new RuntimeException("Could not find naaccr-12-layout.xml");
-        File layoutFile = new File(outputDir, "naaccr-12-layout.xml");
+            throw new RuntimeException("Could not find naaccr-15-layout.xml");
+        File layoutFile = new File(outputDir, "naaccr-15-layout.xml");
         IOUtils.copy(is, new FileOutputStream(layoutFile));
         System.out.println("Created " + layoutFile.getName());
 
